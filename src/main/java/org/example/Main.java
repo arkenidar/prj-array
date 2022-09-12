@@ -13,8 +13,8 @@ public class Main {
         ArrayOperazioni<Integer> array = new ArrayOperazioni<>(serie1);
 
         Integer[] serie2 = {5, 6, 7, 8};
-        array.aggiungiFine(10);
-        array.aggiungiInizio(-10);
+        array.aggiungiFine(100);
+        array.aggiungiInizio(-100);
 
         out.println(array);
 

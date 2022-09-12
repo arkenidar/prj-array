@@ -13,8 +13,9 @@ public class ArrayOperazioni<T> {
     public void aggiungiFine(T x) {
         // accresci
         ///https://www.baeldung.com/java-generic-array
-        @SuppressWarnings("unchecked")
-        T[] array2 = (T[]) Array.newInstance(array[0].getClass(), array.length + 1);
+        T[] array2 = alloca(array.length + 1);
+        //@SuppressWarnings("unchecked")
+        //T[] array2 = (T[]) Array.newInstance(array[0].getClass(), array.length + 1);
         ////T[] array2 = new T[array.length + 1];
         // conserva
         T[] iniziale = array;
@@ -24,6 +25,13 @@ public class ArrayOperazioni<T> {
         // aggiungi
         int indiceFine = array.length - 1;
         array[indiceFine] = x;
+    }
+
+    public T[] alloca(int size) {
+        T elem = array[0];
+        @SuppressWarnings("unchecked")
+        T[] array2 = (T[]) Array.newInstance(elem.getClass(), size);
+        return array2;
     }
 
     public void ricopia(T[] array) {
@@ -40,7 +48,7 @@ public class ArrayOperazioni<T> {
     public void aggiungiInizio(T x) {
         // accresci
         @SuppressWarnings("unchecked")
-        T[] array2 = (T[]) Array.newInstance(array[0].getClass(), array.length + 1);
+        T[] array2 = alloca(array.length + 1);
         // conserva
         T[] iniziale = array;
         // ricopia
@@ -64,7 +72,7 @@ public class ArrayOperazioni<T> {
         // accresci
         //T[] array2 = new T[array.length + arrayArg.length];
         @SuppressWarnings("unchecked")
-        T[] array2 = (T[]) Array.newInstance(array[0].getClass(), array.length + arrayArg.length);
+        T[] array2 = alloca(array.length + arrayArg.length);
 
         // conserva
         T[] iniziale = array;
@@ -79,7 +87,7 @@ public class ArrayOperazioni<T> {
         // accresci
         ////T[] arrayN = new T[array.length + arrayArg.length];
         @SuppressWarnings("unchecked")
-        T[] arrayN = (T[]) Array.newInstance(array[0].getClass(), array.length + arrayArg.length);
+        T[] arrayN = alloca(array.length + arrayArg.length);
 
         T[] iniziale = array; // conserva
 
