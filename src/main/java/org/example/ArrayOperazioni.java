@@ -1,19 +1,23 @@
 package org.example;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class ArrayOperazioni {
-    private int[] array;
+public class ArrayOperazioni<T> {
+    private T[] array;
 
-    public ArrayOperazioni(int[] arrayIniziale) {
+    public ArrayOperazioni(T[] arrayIniziale) {
         array = arrayIniziale;
     }
 
-    public void aggiungiFine(int x) {
+    public void aggiungiFine(T x) {
         // accresci
-        int[] array2 = new int[array.length + 1];
+        ///https://www.baeldung.com/java-generic-array
+        @SuppressWarnings("unchecked")
+        T[] array2 = (T[]) Array.newInstance(array[0].getClass(), array.length + 1);
+        ////T[] array2 = new T[array.length + 1];
         // conserva
-        int[] iniziale = array;
+        T[] iniziale = array;
         // ricopia
         array = array2; // accresciuto
         ricopia(iniziale);
@@ -22,22 +26,23 @@ public class ArrayOperazioni {
         array[indiceFine] = x;
     }
 
-    public void ricopia(int[] array) {
+    public void ricopia(T[] array) {
         ricopia(array, 0);
     }
 
-    public void ricopia(int[] array2, int indiceInizio) {
+    public void ricopia(T[] array2, int indiceInizio) {
         for (int i = 0; i < array2.length; i++) {
-            int elemento = array2[i];
+            T elemento = array2[i];
             array[i + indiceInizio] = elemento; // copia elemento
         }
     }
 
-    public void aggiungiInizio(int x) {
+    public void aggiungiInizio(T x) {
         // accresci
-        int[] array2 = new int[array.length + 1];
+        @SuppressWarnings("unchecked")
+        T[] array2 = (T[]) Array.newInstance(array[0].getClass(), array.length + 1);
         // conserva
-        int[] iniziale = array;
+        T[] iniziale = array;
         // ricopia
         array = array2; // accresciuto
         // inizia da dopo, dopo l'inizio
@@ -54,24 +59,29 @@ public class ArrayOperazioni {
                 '}';
     }
 
-    public void aggiungiFine(int[] arrayArg) {
-        int lunghezzaIniz = array.length;
+    public void aggiungiFine(T[] arrayArg) {
+        int lunghezzaIniziale = array.length;
         // accresci
-        int[] array2 = new int[array.length + arrayArg.length];
+        //T[] array2 = new T[array.length + arrayArg.length];
+        @SuppressWarnings("unchecked")
+        T[] array2 = (T[]) Array.newInstance(array[0].getClass(), array.length + arrayArg.length);
+
         // conserva
-        int[] iniziale = array;
+        T[] iniziale = array;
         // ricopia
         array = array2; // accresciuto
         ricopia(iniziale);
         // aggiungi
-        ricopia(arrayArg, lunghezzaIniz);
+        ricopia(arrayArg, lunghezzaIniziale);
     }
 
-    public void aggiungiInizio(int[] arrayArg) {
+    public void aggiungiInizio(T[] arrayArg) {
         // accresci
-        int[] arrayN = new int[array.length + arrayArg.length];
+        ////T[] arrayN = new T[array.length + arrayArg.length];
+        @SuppressWarnings("unchecked")
+        T[] arrayN = (T[]) Array.newInstance(array[0].getClass(), array.length + arrayArg.length);
 
-        int[] iniziale = array; // conserva
+        T[] iniziale = array; // conserva
 
         // ricopia
         array = arrayN;
